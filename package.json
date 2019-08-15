@@ -1,0 +1,24 @@
+{
+  "name": "analytics-dashboard",
+  "version": "1.0.0",
+  "description": "A custom analytics dashboard built with nodejs and react",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jrc356/analytics-dashboard.git"
+  },
+  "keywords": [
+    "nodejs",
+    "react",
+    "analytics"
+  ],
+  "author": "Jon R. Corbin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jrc356/analytics-dashboard/issues"
+  },
+  "homepage": "https://github.com/Jrc356/analytics-dashboard#readme"
+}
