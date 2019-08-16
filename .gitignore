@@ -1,6 +1,7 @@
 # Misc
 node_modules
 .env
+auth.json
 
 # Mac
 .DS_Store
