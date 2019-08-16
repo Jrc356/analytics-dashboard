@@ -1,6 +1,6 @@
 {
   "name": "analytics-dashboard",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A custom analytics dashboard built with nodejs and react",
   "main": "server.js",
   "scripts": {
