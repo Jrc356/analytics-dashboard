@@ -14,7 +14,7 @@ const jwt = new google.auth.JWT({
   scopes,
 });
 
-async function getData(metrics, startDate, endDate) {
+async function getMetric(metric, startDate, endDate) {
   await jwt.authorize((err) => {
     if (err) {
       console.log('Auth Error');
@@ -24,23 +24,30 @@ async function getData(metrics, startDate, endDate) {
     }
   });
 
-  // ensure all metrics have ga:
-  const santizedMetrics = Array.from(metrics);
-  for (let i = 0; i < santizedMetrics.length; i += 1) {
-    if (!santizedMetrics[i].startsWith('ga:')) {
-      santizedMetrics[i] = `ga:${santizedMetrics[i]}`;
-    }
-  }
-
   const result = await analytics.data.ga.get({
     auth: jwt,
     ids: `ga:${viewId}`,
     'start-date': startDate,
     'end-date': endDate,
-    metrics: santizedMetrics,
+    metrics: metric,
   });
 
   return result;
+}
+
+function getData(metrics, startDate, endDate) {
+  // ensure all metrics have ga:
+  const results = [] 
+  for (let i = 0; i < metrics.length; i += 1) {
+    let metric = metrics[i];
+    if (!metric.startsWith('ga:')) {
+      metric = `ga:${metric}`;
+    }
+
+    results.push(getMetric(metric, startDate, endDate));
+  }
+
+  return results;
 }
 
 module.exports = { getData };

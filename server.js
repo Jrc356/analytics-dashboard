@@ -21,8 +21,11 @@ app.get('/', (req, res) => {
 
 app.get('/api', (req, res) => {
   const { metrics, startDate, endDate } = req.query;
+  console.log(`Requested metrics: ${metrics}`);
+  console.log(`Requested start-date: ${startDate}`);
+  console.log(`Requested end-date: ${endDate}`);
 
-  getData(metrics.split(','), startDate, endDate)
+  Promise.all(getData(metrics.split(','), startDate, endDate))
     .then((data) => {
       res.send(data);
     })
