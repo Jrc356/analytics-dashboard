@@ -7,3 +7,6 @@ package-lock.json
 
 # VS Code
 .vs*
+
+# Article resources and notes
+.article_notes
