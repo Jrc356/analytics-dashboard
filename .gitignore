@@ -1,5 +1,6 @@
-# Node
+# Misc
 node_modules
+.env
 
 # Mac
 .DS_Store
