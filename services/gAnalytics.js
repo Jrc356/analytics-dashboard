@@ -37,7 +37,7 @@ async function getMetric(metric, startDate, endDate) {
 
 function getData(metrics, startDate, endDate) {
   // ensure all metrics have ga:
-  const results = [] 
+  const results = [];
   for (let i = 0; i < metrics.length; i += 1) {
     let metric = metrics[i];
     if (!metric.startsWith('ga:')) {
