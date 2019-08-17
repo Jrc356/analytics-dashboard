@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 // Libraries
-const { getData } = require('./analytics_library');
+const { getData } = require('./services/gAnalytics');
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
