@@ -5,15 +5,14 @@ const express = require('express');
 
 const app = express();
 
-// Libraries
+// Services
 const { getData } = require('./services/gAnalytics');
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
 
 // Config
 const port = process.env.SERVER_PORT;
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 app.get('/', (req, res) => {
   res.send('<p>Hello World</p>');
