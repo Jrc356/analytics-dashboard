@@ -14,10 +14,10 @@ const styles = theme => ({
 
 export class Header extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, text } = this.props;
     return (
       <Grid item xs={12}>
-        <Paper className={classes.header}>Analytics Dashboard</Paper>
+        <Paper className={classes.header}>{text}</Paper>
       </Grid>
     )
   }

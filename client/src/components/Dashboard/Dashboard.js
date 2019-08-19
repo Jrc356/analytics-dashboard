@@ -17,7 +17,7 @@ class Dashboard extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
-          <Header />
+          <Header text={"Analytics Dashboard"}/>
           <DashboardItem size={9} priority={'primary'} metric={'some metric'} />
           <DashboardItem size={3} priority={'secondary'} metric={'another metric'} />
         </Grid>
