@@ -51,3 +51,6 @@ $ npm build
 Then change the NODE_ENV variable in `.env` to `production`
 Finally, use `npm run server` from the top level directory. This will start up the node server using the client `build` 
 output as the static directory. You can now navigate to `localhost:<SERVER_PORT>` and see your app.
+
+# License
+See [LICENSE](LICENSE.md)
