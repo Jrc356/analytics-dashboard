@@ -14,9 +14,9 @@ const styles = theme => ({
 
 export class Header extends Component {
   render() {
-    const { classes, text } = this.props;
+    const { classes, size, text } = this.props;
     return (
-      <Grid item xs={12}>
+      <Grid item xs={ size }>
         <Paper className={classes.header}>{text}</Paper>
       </Grid>
     )
