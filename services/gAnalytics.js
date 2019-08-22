@@ -20,6 +20,7 @@ async function getMetric(metric, startDate, endDate) {
       console.log('Auth Error');
       console.log(err);
     } else {
+      console.log(`Retrieving ${metric} for period ${startDate} to ${endDate}`);
       console.log('Successfully connected!');
     }
   });
@@ -32,10 +33,12 @@ async function getMetric(metric, startDate, endDate) {
     metrics: metric,
   });
 
-  return result;
+  const res = {};
+  res[metric] = result.data.totalsForAllResults[metric];
+  return res;
 }
 
-function getData(metrics, startDate, endDate) {
+function getData(metrics = ['ga:users'], startDate = '30daysAgo', endDate = 'today') {
   // ensure all metrics have ga:
   const results = [];
   for (let i = 0; i < metrics.length; i += 1) {
