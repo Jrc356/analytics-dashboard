@@ -2,10 +2,8 @@ require('dotenv').config();
 
 // Server
 const express = require('express');
-const cors = require('cors');
 
 const app = express();
-app.use(cors());
 
 // Services
 const { getData } = require('./services/gAnalytics');
@@ -16,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.get('/', (res) => {
+app.get('/', (req, res) => {
   res.send('<p>Hello World</p>');
 });
 
