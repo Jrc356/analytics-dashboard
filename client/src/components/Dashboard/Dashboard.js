@@ -17,10 +17,12 @@ class Dashboard extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Grid container spacing={3} justify={"center"}>
+        <Grid container spacing={3} justify={"center"} alignItems={"center"}>
           <Header size={12} text={"Analytics Dashboard"}/>
-          <DashboardItem size={9} priority={'primary'} metric={'some metric'} />
-          <DashboardItem priority={'secondary'} metric={'another metric'} />
+          <DashboardItem size={9} priority={'primary'} metric={'Users'} />
+          <DashboardItem size={3} priority={'secondary'} metric={'Sessions'} />
+          <DashboardItem size={3} priority={'primary'} metric={'Page Views'} />
+          <DashboardItem size={9} metric={'Transaction Revenue'} />
         </Grid>
       </div>
     );
