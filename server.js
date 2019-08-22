@@ -24,12 +24,20 @@ app.get('/api', (req, res) => {
   console.log(`Requested start-date: ${startDate}`);
   console.log(`Requested end-date: ${endDate}`);
 
-  Promise.all(getData(metrics.split(','), startDate, endDate))
+  Promise.all(getData(metrics ? metrics.split(',') : metrics, startDate, endDate))
     .then((data) => {
-      res.send(data);
+      // flatten list of objects into one object
+      const body = {};
+      Object.values(data).forEach((value) => {
+        Object.keys(value).forEach((key) => {
+          body[key] = value[key];
+        });
+      });
+
+      res.send({ data: body });
     })
     .catch((err) => {
-      res.send({ status: 'Error', message: `${err}` });
+      res.send({ status: 'Error getting a metric', message: `${err}` });
     });
 });
 

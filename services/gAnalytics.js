@@ -16,6 +16,7 @@ const jwt = new google.auth.JWT({
 
 async function getMetric(metric, startDate, endDate) {
   await jwt.authorize((err) => {
+    console.log(`Retrieving data for metric: ${metric}`);
     if (err) {
       console.log('Auth Error');
       console.log(err);
@@ -32,10 +33,12 @@ async function getMetric(metric, startDate, endDate) {
     metrics: metric,
   });
 
-  return result;
+  const res = {};
+  res[metric] = result.data.totalsForAllResults[metric];
+  return res;
 }
 
-function getData(metrics, startDate, endDate) {
+function getData(metrics = ['ga:users'], startDate = '30daysAgo', endDate = 'today') {
   // ensure all metrics have ga:
   const results = [];
   for (let i = 0; i < metrics.length; i += 1) {
