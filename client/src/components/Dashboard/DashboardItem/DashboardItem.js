@@ -88,7 +88,7 @@ class DashboardItem extends Component {
       size } = this.state;
 
     return (
-      <Grid item xs={ size ? size : 'auto' } zeroMinWidth height={100} width={100}>
+      <Grid item xs={ size ? size : 'auto' } zeroMinWidth>
         <Paper className={`${classNames}`}>
           <h2>{metric}</h2>
           <p>{data}</p>
