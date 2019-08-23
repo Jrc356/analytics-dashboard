@@ -34,7 +34,11 @@ async function getMetric(metric, startDate, endDate) {
   });
 
   const res = {};
-  res[metric] = result.data.totalsForAllResults[metric];
+  res[metric] = {
+    value: result.data.totalsForAllResults[metric],
+    start: startDate,
+    end: endDate,
+  };
   return res;
 }
 
