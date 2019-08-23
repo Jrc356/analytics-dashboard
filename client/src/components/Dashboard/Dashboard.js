@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Header from './Header/Header';
 import Grid from '@material-ui/core/Grid';
 import DashboardItem from './DashboardItem/DashboardItem';
 
@@ -18,7 +17,6 @@ class Dashboard extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={3} justify={"center"} alignItems={"center"}>
-          <Header size={12} text={"Analytics Dashboard"}/>
           <DashboardItem size={9} priority={'primary'} metric={'Users'} />
           <DashboardItem size={3} priority={'secondary'} metric={'Sessions'} />
           <DashboardItem size={3} priority={'primary'} metric={'Page Views'} />
