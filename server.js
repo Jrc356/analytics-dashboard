@@ -51,7 +51,7 @@ app.get('/api/graph', (req, res) => {
   for (let i = 7; i >= 1; i -= 1) {
     promises.push(getData([metric], `${i}daysAgo`, `${i - 1}daysAgo`));
   }
-  promises = promises.flat(1);
+  promises = [].concat(...promises);
 
   Promise.all(promises)
     .then((data) => {
@@ -59,12 +59,7 @@ app.get('/api/graph', (req, res) => {
       const body = {};
       body[metric] = [];
       Object.values(data).forEach((value) => {
-        console.log(value);
         body[metric].push(value[metric.startsWith('ga:') ? metric : `ga:${metric}`]);
-        // Object.keys(value).forEach((key) => {
-        //   // only 1 metric means only 1 key
-        //   body[metric].push(value[key]);
-        // });
       });
 
       res.send({ data: body });
