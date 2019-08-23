@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
 
 const styles = theme => ({
   header: {
@@ -14,11 +14,11 @@ const styles = theme => ({
 
 export class Header extends Component {
   render() {
-    const { classes, size, text } = this.props;
+    const { classes, text } = this.props;
     return (
-      <Grid item xs={ size }>
+      <AppBar position='static'>
         <Paper className={classes.header}>{text}</Paper>
-      </Grid>
+      </AppBar>
     )
   }
 }
