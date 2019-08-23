@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DashboardItem from './DashboardItem/DashboardItem';
+import { isMobile } from '../../utils';
 
 const styles = () => ({
   root: {
@@ -15,7 +16,7 @@ const Dashboard = (props) => {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <Grid container spacing={3} justify="center" alignItems="center">
+      <Grid container direction={isMobile ? 'column' : 'row'} spacing={3} justify="center" alignItems="center">
         <DashboardItem size={9} priority="primary" metric="Users" />
         <DashboardItem size={3} priority="secondary" metric="Sessions" visual="chart" type="line" />
         <DashboardItem size={3} priority="primary" metric="Page Views" />
