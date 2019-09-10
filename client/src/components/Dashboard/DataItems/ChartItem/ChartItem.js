@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line,
+  ResponsiveContainer, LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip,
 } from 'recharts';
 
 export const ChartItem = (props) => {
@@ -10,7 +10,8 @@ export const ChartItem = (props) => {
     <ResponsiveContainer height="75%" width="90%">
       <LineChart data={data}>
         <XAxis dataKey={xKey} />
-        <YAxis />
+        <YAxis type="number" domain={[0, 'dataMax + 100']} />
+        <Tooltip />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         <Line type="monotone" dataKey={valKey} stroke="#8884d8" />
       </LineChart>
