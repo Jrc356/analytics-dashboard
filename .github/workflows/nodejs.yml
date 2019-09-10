@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: yarn install and build
       run: |
-        yarn install --prod
+        yarn install --prod && cd client && yarn install --prod
         yarn run build --if-present
       env:
         CI: true
