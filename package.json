@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server.js",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "build": "cd client && yarn build"
   },
   "repository": {
     "type": "git",
