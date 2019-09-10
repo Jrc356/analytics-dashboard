@@ -15,7 +15,11 @@ const jwt = new google.auth.JWT({
 });
 
 async function getMetric(metric, startDate, endDate) {
-  await jwt.authorize((err) => {
+  await setTimeout[Object.getOwnPropertySymbols(setTimeout)[0]](
+    Math.trunc(1000 * Math.random()),
+  ); // 3 sec
+
+  jwt.authorize((err) => {
     if (err) {
       console.log('Auth Error');
       console.log(err);
@@ -35,7 +39,7 @@ async function getMetric(metric, startDate, endDate) {
 
   const res = {};
   res[metric] = {
-    value: result.data.totalsForAllResults[metric],
+    value: parseInt(result.data.totalsForAllResults[metric], 10),
     start: startDate,
     end: endDate,
   };
