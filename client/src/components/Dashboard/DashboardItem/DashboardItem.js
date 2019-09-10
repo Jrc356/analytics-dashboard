@@ -122,7 +122,7 @@ class DashboardItem extends Component {
     } else {
       switch (visual) {
         case 'chart':
-          component = <ChartItem data={data} type={type} />;
+          component = <ChartItem data={data} xKey='start' valKey='value' type={type} />;
           break;
         default:
           component = <TextItem data={data} />;
