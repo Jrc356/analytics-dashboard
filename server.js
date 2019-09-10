@@ -67,6 +67,8 @@ app.get('/api/graph', (req, res) => {
       console.log('Done');
     })
     .catch((err) => {
+      console.log('Error:');
+      console.log(err);
       res.send({ status: 'Error', message: `${err}` });
       console.log('Done');
     });
