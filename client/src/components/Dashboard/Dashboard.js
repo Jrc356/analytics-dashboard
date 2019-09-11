@@ -18,8 +18,8 @@ const Dashboard = (props) => {
     <div className={classes.root}>
       <Grid container direction={isMobile ? 'column' : 'row'} spacing={3} justify="center" alignItems="center">
         <DashboardItem size={9} priority="primary" metric="Users" visual="chart" type="line" />
-        <DashboardItem size={3} priority="secondary" metric="Sessions" visual="chart" type="line" />
-        <DashboardItem size={3} priority="primary" metric="Page Views" visual="chart" type="line" />
+        <DashboardItem size={3} priority="secondary" metric="Sessions"/>
+        <DashboardItem size={3} priority="primary" metric="Page Views"/>
         <DashboardItem size={9} metric="Total Events" visual="chart" type="line"/>
       </Grid>
     </div>
