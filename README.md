@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FJrc356%2Fanalytics-dashboard%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/Jrc356/analytics-dashboard/goto?ref=master)
+
 # Analytics Dashboard
 This analytics dashboard is a custom built website analytics dashboard built on Nodejs and React. 
 It utilizes the googleapis package to read metrics and display them in a simple and elegant way. It also implements real 
