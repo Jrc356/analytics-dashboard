@@ -4,11 +4,19 @@
   "description": "A custom analytics dashboard built with nodejs and react",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test_server": "jest ./ --passWithNoTests",
+    "test_client": "cd client && yarn test",
+    "test": "concurrently \"yarn test_server\" \"yarn test_client\"",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server.js",
     "client": "cd client && npm start",
     "build": "cd client && yarn build"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./client",
+      "./node_modules"
+    ]
   },
   "repository": {
     "type": "git",
@@ -32,7 +40,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-flowtype": "^4.2.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3"
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "jest": "24.8.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
