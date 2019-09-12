@@ -8,11 +8,8 @@ const getConnections = (cb) => {
 
 export const RealTimeItem = () => {
   const [connections, setConnections] = useState(0);
-  
-  console.log("TESTING");
 
   getConnections((conns) => {
-    console.log("TEST")
     console.log(conns);
     setConnections(conns);
   });
