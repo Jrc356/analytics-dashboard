@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { TextItem, ChartItem } from '../DataItems';
+import { TextItem, ChartItem, RealTimeItem } from '../DataItems';
 import { numberWithCommas, isMobile } from '../../../utils';
 
 const styles = (theme) => ({
@@ -64,12 +64,20 @@ class DashboardItem extends Component {
     const { visual, metric } = this.state;
     const strippedMetric = metric.replace(' ', '');
 
+    // Do not need to retreive metric data if metric is real time, handled in component
+    if (metric.toUpperCase() === "REAL TIME") {
+      this.setState({ data: "Real Time" })
+      return;
+    }
+
+
     let url;
     if (visual === 'chart') {
       url = `http://localhost:3001/api/graph?metric=${strippedMetric}`;
     } else {
       url = `http://localhost:3001/api?metrics=${strippedMetric}`;
     }
+
     fetch(url, {
       method: 'GET',
       mode: 'cors',
@@ -82,8 +90,13 @@ class DashboardItem extends Component {
           value = data.data[strippedMetric];
           formattedValue = value;
         } else {
-          value = strippedMetric.startsWith('ga:') ? data.data[strippedMetric] : data.data[`ga:${strippedMetric}`];
-          formattedValue = numberWithCommas(parseInt(value.value, 10));
+          try {
+            value = strippedMetric.startsWith('ga:') ? data.data[strippedMetric] : data.data[`ga:${strippedMetric}`];
+            formattedValue = numberWithCommas(parseInt(value.value, 10));
+          } catch (exp) {
+            console.log(exp);
+            formattedValue = "Error Retrieving Value"
+          }
         }
         this.setState({ data: formattedValue });
       });
@@ -119,6 +132,8 @@ class DashboardItem extends Component {
     let component;
     if (data === 'No data') {
       component = <TextItem data={data} />;
+    } else if (data === 'Real Time') {
+      component = <RealTimeItem />
     } else {
       switch (visual) {
         case 'chart':
