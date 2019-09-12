@@ -7,6 +7,10 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
+const server = require('http').createServer(app);
+
+const io = require('socket.io').listen(server, { origins: '*:*' });
+
 // Services
 const { getData } = require('./services/gAnalytics');
 
@@ -74,6 +78,16 @@ app.get('/api/graph', (req, res) => {
     });
 });
 
-app.listen(port, () => {
+
+io.sockets.on('connection', (socket) => {
+  socket.on('message', (message) => {
+    console.log('Received message:');
+    console.log(message);
+    console.log(Object.keys(io.sockets.connected).length);
+    io.sockets.emit('pageview', { connections: Object.keys(io.sockets.connected).length - 2 });
+  });
+});
+
+server.listen(port, () => {
   console.log(`Server running at localhost:${port}`);
 });
