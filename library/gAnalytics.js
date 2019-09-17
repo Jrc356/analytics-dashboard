@@ -17,17 +17,7 @@ const jwt = new google.auth.JWT({
 async function getMetric(metric, startDate, endDate) {
   await setTimeout[Object.getOwnPropertySymbols(setTimeout)[0]](
     Math.trunc(1000 * Math.random()),
-  ); // 3 sec
-
-  jwt.authorize((err) => {
-    if (err) {
-      console.log('Auth Error');
-      console.log(err);
-    } else {
-      console.log(`Retrieving ${metric} for period ${startDate} to ${endDate}`);
-      console.log('Successfully connected!');
-    }
-  });
+  );
 
   const result = await analytics.data.ga.get({
     auth: jwt,
@@ -46,15 +36,19 @@ async function getMetric(metric, startDate, endDate) {
   return res;
 }
 
+function parseMetric(metric) {
+  let cleanMetric = metric;
+  if (!cleanMetric.startsWith('ga:')) {
+    cleanMetric = `ga:${cleanMetric}`;
+  }
+  return cleanMetric;
+}
+
 function getData(metrics = ['ga:users'], startDate = '30daysAgo', endDate = 'today') {
   // ensure all metrics have ga:
   const results = [];
   for (let i = 0; i < metrics.length; i += 1) {
-    let metric = metrics[i];
-    if (!metric.startsWith('ga:')) {
-      metric = `ga:${metric}`;
-    }
-
+    const metric = parseMetric(metrics[i]);
     results.push(getMetric(metric, startDate, endDate));
   }
 

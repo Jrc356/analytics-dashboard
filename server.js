@@ -9,10 +9,10 @@ app.use(cors());
 
 const server = require('http').createServer(app);
 
-const io = require('socket.io').listen(server, { origins: '*:*' });
+const io = require('socket.io').listen(server);
 
 // Services
-const { getData } = require('./services/gAnalytics');
+const { getData } = require('./library/gAnalytics');
 
 // Config
 const port = process.env.SERVER_PORT;
@@ -41,6 +41,8 @@ app.get('/api', (req, res) => {
       console.log('Done');
     })
     .catch((err) => {
+      console.log('Error:');
+      console.log(err);
       res.send({ status: 'Error getting a metric', message: `${err}` });
       console.log('Done');
     });
